@@ -85,7 +85,7 @@ target_link_libraries(
 pico_add_extra_outputs(RTPT)
 
 # Add FreeRTOS
-set(FREERTOS_KERNEL_PATH "${CMAKE_CURRENT_LIST_DIR}/FreeRTOS-Kernel-main")
+set(FREERTOS_KERNEL_PATH "${CMAKE_CURRENT_LIST_DIR}/FreeRTOS-Kernel")
 include(FreeRTOS_Kernel_import.cmake)
 
 # FREERTOS: FreeRTOSConfig.h needs to be in the include path
