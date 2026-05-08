@@ -84,7 +84,7 @@ class XboxController:
                 self.plugged = False
 
 
-PICO_IP = "192.168.1.104"
+PICO_IP = "10.222.90.183"
 TELEMETRY_IP = "0.0.0.0"
 PORT = 1234
 
