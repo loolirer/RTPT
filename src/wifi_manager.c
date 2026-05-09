@@ -37,7 +37,7 @@ void wifi_manager_task(void *pvParameters) {
     for( ; ; ) {
         printf("[%s] Connecting to SSID: %s...\n", WIFI_MANAGER_TASK, WIFI_SSID);
 
-        if (cyw43_arch_wifi_connect_blocking(WIFI_SSID, WIFI_PASSWORD, CYW43_AUTH_WPA2_AES_PSK) == 0) {
+        if (cyw43_arch_wifi_connect_blocking(WIFI_SSID, WIFI_PASS, CYW43_AUTH_WPA2_AES_PSK) == 0) {
             printf("[%s] Connected! IP: %s\n", WIFI_MANAGER_TASK, ip4addr_ntoa(netif_ip4_addr(netif_default)));
             xEventGroupSetBits(wifi_event_group, WIFI_CONNECTED);
             ulTaskNotifyTake(pdTRUE, portMAX_DELAY);

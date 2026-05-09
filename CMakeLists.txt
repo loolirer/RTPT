@@ -82,17 +82,30 @@ target_link_libraries(
         pico_cyw43_arch_lwip_sys_freertos
 )
 
-pico_add_extra_outputs(RTPT)
-
 # Add FreeRTOS
 set(FREERTOS_KERNEL_PATH "${CMAKE_CURRENT_LIST_DIR}/FreeRTOS-Kernel")
 include(FreeRTOS_Kernel_import.cmake)
-
-# FREERTOS: FreeRTOSConfig.h needs to be in the include path
 target_include_directories(RTPT PRIVATE ${CMAKE_CURRENT_LIST_DIR})
-
-# Add the FreeRTOS library to the build
 target_link_libraries(
         RTPT
         FreeRTOS-Kernel-Heap4
 )
+
+# Add pico2wota
+include(secrets.cmake OPTIONAL)
+target_compile_definitions( 
+        ${PROJECT_NAME} PRIVATE 
+
+        PICO2WOTA_WIFI_SSID="${PICO2WOTA_WIFI_SSID}" 
+        PICO2WOTA_WIFI_PASS="${PICO2WOTA_WIFI_PASS}" 
+        PICO2WOTA_WIFI_AP=${PICO2WOTA_WIFI_AP}
+
+        WIFI_SSID="${WIFI_SSID}"
+        WIFI_PASS="${WIFI_PASS}"
+) 
+add_subdirectory(pico2wota)
+target_link_libraries(
+        RTPT 
+        pico2wota_reboot
+)
+pico2wota_build_combined(${PROJECT_NAME})

@@ -7,8 +7,6 @@
 #include "lwip/netif.h"
 
 #define WIFI_MANAGER_TASK "WIFI_MANAGER"
-#define WIFI_SSID "G53"
-#define WIFI_PASSWORD "12345678"
 #define WIFI_CONNECTED (1 << 0)
 
 extern TaskHandle_t wifi_manager_handle;
